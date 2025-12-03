@@ -1,12 +1,12 @@
 """This module is used to create a global event loop for the application."""
 
+import sys
 import asyncio
 import traceback
-import pygame
 from .io.logging import play_logger
 
 
-def _handle_exception(loop, context):
+def _handle_exception(the_loop, context):
     exception = context.get("exception")
     task = context.get("future")
     task_name = task.get_name() if task else "unknown"
@@ -16,16 +16,14 @@ def _handle_exception(loop, context):
             type(exception), exception, exception.__traceback__
         )
         tb_str = "".join(tb_lines)
-        play_logger.critical(f"Unhandled exception in task '{task_name}':\n{tb_str}")
+        play_logger.critical("Unhandled exception in task '%s':\n%s", task_name, tb_str)
     else:
         play_logger.critical(
             context.get("message", "Unhandled exception in async task")
         )
 
-    loop.stop()
+    the_loop.stop()
 
-
-import sys
 
 # Python 3.14+ changed asyncio.get_event_loop() behavior
 # It no longer automatically creates a new event loop if one doesn't exist
