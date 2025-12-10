@@ -36,7 +36,8 @@ class Image(Sprite):
                 ),
             )
             draw_image = pygame.transform.rotate(draw_image, self.angle)
-            draw_image.set_alpha(self.transparency * 2.55)
+            alpha_value = round(self.transparency * 2.55)
+            draw_image.set_alpha(alpha_value)
             self.rect = draw_image.get_rect()
             pos = convert_pos(self.x, self.y)
             self.rect.center = pos
