@@ -13,9 +13,9 @@ def test_set_alpha():
     sys.path.insert(0, ".")
     import play
 
-    image1 = play.new_image(image="yellow.jpg", size=10, transparency=0)
-    image2 = play.new_image(image="yellow.jpg", size=10, transparency=50)
-    image3 = play.new_image(image="yellow.jpg", size=10, transparency=100)
+    image1 = play.new_image(image="tests/objects_attributes/yellow.jpg", size=10, transparency=0)
+    image2 = play.new_image(image="tests/objects_attributes/yellow.jpg", size=10, transparency=50)
+    image3 = play.new_image(image="tests/objects_attributes/yellow.jpg", size=10, transparency=100)
 
     @play.repeat_forever
     def move():
