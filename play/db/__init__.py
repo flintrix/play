@@ -27,10 +27,15 @@ class Database:
         keys = key.split(":")
         value = self.data
         for k in keys:
-            value = value.get(k, None)
-            if value is None:
+            if isinstance(value, dict):
+                if k in value:
+                    value = value[k]
+                else:
+                    value = fallback
+                    break
+            else:
                 value = fallback
-                break
+                break         
         return value
 
     def set_data(self, key, value):
